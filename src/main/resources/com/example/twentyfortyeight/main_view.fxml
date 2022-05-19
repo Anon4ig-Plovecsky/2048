@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="500.0" maxWidth="500.0" minHeight="500.0" minWidth="500.0" prefHeight="500.0" prefWidth="500.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.twentyfortyeight.MainMenuController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <Label text="2048">
+         <font>
+            <Font size="35.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="150.0" />
+         </VBox.margin>
+      </Label>
+      <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#buttonPressed" text="Новая игра">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Button>
+      <Button fx:id="exitButton" mnemonicParsing="false" onAction="#buttonPressed" text="Выход">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Button>
+   </children>
+</VBox>
