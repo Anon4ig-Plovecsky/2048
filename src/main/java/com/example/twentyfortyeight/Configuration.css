@@ -8,3 +8,8 @@
 .label{
     -fx-text-fill: #FFFFFF;
 }
+.text-field{
+    -fx-background-color: rgba(53,89,119,0.0);
+    -fx-text-fill: #FFFFFF;
+    -fx-prompt-text-fill: #FFFFFF;
+}

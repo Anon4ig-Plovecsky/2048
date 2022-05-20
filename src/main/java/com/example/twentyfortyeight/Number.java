@@ -5,6 +5,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class Number {
     private final Pane frame;
@@ -16,6 +17,8 @@ public class Number {
         stackPane = new StackPane();
         stackPane.setPrefSize(112.5, 112.5);
         number = new Label(Integer.toString(value));
+        Font font = new Font("Noto Sans Regular", 14);
+        number.setFont(font);
         rectangle = new Rectangle();
         rectangle.setHeight(112.5);
         rectangle.setWidth(112.5);
@@ -30,10 +33,10 @@ public class Number {
             case 4 -> rectangle.setFill(Color.rgb(13, 126, 5));
             case 8 -> rectangle.setFill(Color.rgb(126, 68, 21));
             case 16 -> rectangle.setFill(Color.rgb(35, 124, 126));
-            case 32 -> rectangle.setFill(Color.rgb(116, 239, 126));
+            case 32 -> rectangle.setFill(Color.rgb(0, 116, 39));
             case 64 -> rectangle.setFill(Color.rgb(17, 9, 126));
-            case 128 -> rectangle.setFill(Color.rgb(126, 126, 4));
-            case 256 -> rectangle.setFill(Color.rgb(126, 3, 77));
+            case 128 -> rectangle.setFill(Color.rgb(106, 31, 60));
+            case 256 -> rectangle.setFill(Color.rgb(115, 116, 31));
             case 512 -> rectangle.setFill(Color.rgb(3, 126, 75));
             case 1024 -> rectangle.setFill(Color.rgb(126, 7, 7));
             default -> {

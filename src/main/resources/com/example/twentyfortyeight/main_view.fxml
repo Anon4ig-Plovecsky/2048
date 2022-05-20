@@ -13,7 +13,7 @@
    <children>
       <Label text="2048">
          <font>
-            <Font size="35.0" />
+            <Font name="Noto Sans Regular" size="35.0" />
          </font>
          <VBox.margin>
             <Insets bottom="150.0" />
