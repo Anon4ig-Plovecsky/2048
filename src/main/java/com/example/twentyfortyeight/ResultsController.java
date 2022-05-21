@@ -21,9 +21,9 @@ import javafx.fxml.FXML;
 import java.io.File;
 
 public class ResultsController {
-    private final ArrayList<ArrayList<Label>> saveResults = new ArrayList<>();
-    private TextField namePlayer;
-    private Label resultPlayer;
+    public ArrayList<ArrayList<Label>> saveResults = new ArrayList<>();
+    public TextField namePlayer;
+    public Label resultPlayer;
     private int count = 0;
     @FXML
     private GridPane gridPane;
@@ -83,7 +83,7 @@ public class ResultsController {
             setScorePlayerInGrid(saveResults.size());
         saveData();
     }
-    private void saveData() {
+    public void saveData() {
         ArrayList<ArrayList<Label>> fullListResults = new ArrayList<>(saveResults);
         fullListResults.add(new ArrayList<>());
         fullListResults.get(fullListResults.size() - 1).add(new Label(namePlayer.getText()));
@@ -92,11 +92,11 @@ public class ResultsController {
         PrintWriter printWriter;
         try {
             printWriter = new PrintWriter("./src/main/resources/results.txt");
-            for(int i = 0; i < saveResults.size(); i++) {
+            for(int i = 0; i < fullListResults.size(); i++) {
                 if(i >= 10)
                     break;
-                printWriter.println(saveResults.get(i).get(0).getText());
-                printWriter.println(saveResults.get(i).get(1).getText());
+                printWriter.println(fullListResults.get(i).get(0).getText());
+                printWriter.println(fullListResults.get(i).get(1).getText());
             }
             printWriter.close();
         } catch (IOException e) {

@@ -5,16 +5,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
-import java.util.ArrayList;
 import java.io.IOException;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Node;
-import java.util.HashSet;
 import javafx.fxml.FXML;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class GameProcess {
     public static Stage currentStage;
@@ -23,7 +20,7 @@ public class GameProcess {
     public static int score = 0;
     private double pressedCoordX, pressedCoordY, releasedCoordX, releasedCoordY;
     private final int SIZE = 16;
-    private int[][] grid = new int[4][4];
+    protected int[][] grid = new int[4][4];
     private ArrayList<Number> numbers = new ArrayList<>();
     @FXML
     private Pane pane;
@@ -66,6 +63,7 @@ public class GameProcess {
                 int change = (direction == RIGHT) ? (-1) : (1);
                 for (int line = 0; line < 4; line++) {
                     wasSum = false;
+                    ArrayList<Integer> usedSum = new ArrayList<>();
                     for(int i = 0; i < 3; i++) {
                         for (int column = (direction == RIGHT) ? (2) : (1); (direction == RIGHT) ? (column >= 0) : (column < 4); column += change) {
                             if (grid[line][column - change] == 0 && grid[line][column] != 0) {
@@ -74,11 +72,12 @@ public class GameProcess {
                                 wasSum = false;
                                 hasMove = true;
                             }
-                            if (grid[line][column - change] == grid[line][column] && grid[line][column] != 0 && !wasSum) {
+                            if (grid[line][column - change] == grid[line][column] && grid[line][column] != 0 && !wasSum && !usedSum.contains(column)) {
                                 grid[line][column - change] = grid[line][column] * 2;
                                 grid[line][column] = 0;
                                 wasSum = true;
                                 hasMove = true;
+                                usedSum.add(column);
                             }
                         }
                     }
@@ -88,6 +87,7 @@ public class GameProcess {
                 int change = (direction == DOWN) ? (-1) : (1);
                 for (int column = 0; column < 4; column++) {
                     wasSum = false;
+                    ArrayList<Integer> usedSum = new ArrayList<>();
                     for(int i = 0; i < 3; i++) {
                         for (int line = (direction == DOWN) ? (2) : (1); (direction == DOWN) ? (line >= 0) : (line < 4); line += change) {
                             if (grid[line - change][column] == 0 && grid[line][column] != 0) {
@@ -96,11 +96,12 @@ public class GameProcess {
                                 wasSum = false;
                                 hasMove = true;
                             }
-                            if (grid[line - change][column] == grid[line][column] && grid[line][column] != 0 && !wasSum) {
+                            if (grid[line - change][column] == grid[line][column] && grid[line][column] != 0 && !wasSum && !usedSum.contains(column)) {
                                 grid[line - change][column] = grid[line][column] * 2;
                                 grid[line][column] = 0;
                                 wasSum = true;
                                 hasMove = true;
+                                usedSum.add(column);
                             }
                         }
                     }
@@ -127,7 +128,7 @@ public class GameProcess {
         stageResults.setScene(scene);
         stageResults.show();
     }
-    private boolean addNumber(boolean setNumber) {
+    protected boolean addNumber(boolean setNumber) {
         boolean success = false;
         Random random = new Random();
         Set<ArrayList<Integer>> variants = new HashSet<>(new ArrayList<>());
